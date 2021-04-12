@@ -3,9 +3,16 @@ class PostpController < ApplicationController
     def index 
 
         @post = Postp.all
- 
+        render json: { status: 'Success', message:'saved user', data:@post}, status: :ok
 
-        render json: @post, status: :ok
+    end
+
+
+    def getallposts 
+
+        @post = Postp.all
+        @likes = Userlikepost.where('user_id',params[:id_user])
+        render json: { status: 'Success', message:'saved user', data:@post, likes:@likes}, status: :ok
 
     end
 

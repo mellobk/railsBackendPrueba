@@ -11,11 +11,21 @@ class UserlikepostController < ApplicationController
     def create 
 
 
-        @userlikepostSearch=Userlikepost.where(postp_id: 1, user_id: 1)
+        @userlikepostSearch=Userlikepost.where(postp_id:  params[:postp_id], user_id: params[:user_id])
+        
+        @Post=Postp.where('id',params[:postp_id])
+        
 
+        if params[:parametro]==="like"
+            @Post.update(numero_likes: @Post[0].numero_likes+1 )
+        else
+            @Post.update(numero_dislikes: @Post[0].numero_dislikes-1 )
+        end
+        
         if !@userlikepostSearch.empty? 
 
             @userlikepostSearch.update(update_params)
+         
                 
             render json: { status: 'Success', message:'update successfull', data:@userlikepostSearch}, status: :ok
         else
@@ -38,12 +48,13 @@ class UserlikepostController < ApplicationController
 
     def user_likes_post_param
 
-        params.require(:userlikepost).permit(:user_id,:postp_id,:status)
+        params.permit(:user_id,:postp_id,:status)
 
     end
 
+
     def update_params
-        params.require(:userlikepost).permit(:status)
+        params.permit(:status)
       end
 
 end

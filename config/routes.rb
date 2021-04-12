@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :postp
   resources :comentario
   resources :userlikepost
+
+  get '/getallposts/:id_user', to: 'postp#getallposts'
 end
