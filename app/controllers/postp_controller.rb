@@ -11,7 +11,7 @@ class PostpController < ApplicationController
     def getallposts 
 
         @post = Postp.all
-        @likes = Userlikepost.all
+        @likes = Userlikepost.where(user_id: params[:id_user])
         render json: { status: 'Success', message:'saved user', data:@post, likes:@likes}, status: :ok
 
     end
