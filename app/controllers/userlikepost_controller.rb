@@ -13,13 +13,13 @@ class UserlikepostController < ApplicationController
 
         @userlikepostSearch=Userlikepost.where(postp_id:  params[:postp_id], user_id: params[:user_id])
         
-        @Post=Postp.where('id',params[:postp_id])
+        @Post=Postp.where(id: params[:postp_id])
         
 
         if params[:parametro]==="like"
-            @Post.update(numero_likes: @Post[0].numero_likes+1 )
+            @Post.update(numero_likes: @Post[0].numero_likes+params[:like] )
         else
-            @Post.update(numero_dislikes: @Post[0].numero_dislikes-1 )
+            @Post.update(numero_dislikes: @Post[0].numero_dislikes+params[:like] )
         end
         
         if !@userlikepostSearch.empty? 
