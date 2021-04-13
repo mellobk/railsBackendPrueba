@@ -10,8 +10,9 @@ class PostpController < ApplicationController
 
     def getallposts 
 
-        @post = :id_user
-        render json: { status: 'Success', message:'saved user', data:@post}, status: :ok
+        @post = Postp.all
+        @likes = Userlikepost.all
+        render json: { status: 'Success', message:'saved user', data:@post, likes:@likes}, status: :ok
 
     end
 
