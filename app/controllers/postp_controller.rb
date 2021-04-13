@@ -35,7 +35,7 @@ class PostpController < ApplicationController
 
     def postp_param
 
-        params.permit(:user_id,:nombre,:contenido,:numero_likes,:numero_dislikes,:numero_comentarios)
+        params.permit(:user_id,:nombre,:contenido,:numerolikes,:numerodislikes,:numerocomentarios)
 
     end
 
