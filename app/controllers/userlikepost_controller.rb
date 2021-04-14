@@ -20,7 +20,7 @@ class UserlikepostController < ApplicationController
             @Post.update(numero_likes: @Post[0].numero_likes+params[:like] )
         elsif  params[:parametro]==="likedislike"
             @Post.update(numero_dislikes: @Post[0].numero_dislikes+params[:dislike] )
-            @Post.update(numero_dislikes: @Post[0].numero_likes+params[:like] )
+            @Post.update(numero_likes: @Post[0].numero_likes+params[:like] )
         else
             @Post.update(numero_dislikes: @Post[0].numero_dislikes+params[:dislike] )
 
