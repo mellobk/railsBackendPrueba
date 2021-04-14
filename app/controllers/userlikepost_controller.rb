@@ -18,8 +18,13 @@ class UserlikepostController < ApplicationController
 
         if params[:parametro]==="like"
             @Post.update(numero_likes: @Post[0].numero_likes+params[:like] )
-        else
+        elsif  params[:parametro]==="likedislike"
             @Post.update(numero_dislikes: @Post[0].numero_dislikes+params[:like] )
+            @Post.update(numero_dislikes: @Post[0].numero_likes+params[:dislike] )
+        else
+            @Post.update(numero_dislikes: @Post[0].numero_dislikes+params[:dislike] )
+
+        
         end
         
         if !@userlikepostSearch.empty? 
