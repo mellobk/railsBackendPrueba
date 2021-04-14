@@ -2,7 +2,7 @@ class PostpController < ApplicationController
 
     def index 
 
-        @post = Postp.all
+        @post = Postp.join('LEFT JOIN "users" ON "users"."id" = "posts"."user_id"')
         render json: { status: 'Success', message:'saved user', data:@post}, status: :ok
 
     end
@@ -10,7 +10,7 @@ class PostpController < ApplicationController
 
     def getallposts 
 
-        @post = Postp.all
+        @post = Postp.joins('LEFT JOIN "users" ON "users"."id" = "postps"."user_id"').select('users.email','postps.*')
         @likes = Userlikepost.where(user_id: params[:id_user])
         render json: { status: 'Success', message:'saved user', data:@post, likes:@likes}, status: :ok
 
