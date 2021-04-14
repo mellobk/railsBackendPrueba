@@ -12,7 +12,7 @@ class PostpController < ApplicationController
 
         @post = Postp.joins('LEFT JOIN "users" ON "users"."id" = "postps"."user_id"').select('users.email','postps.*')
         @likes = Userlikepost.where(user_id: params[:id_user])
-        render json: { status: 'Success', message:'saved user', data:@post, likes:@likes}, status: :ok
+        render json: { status: 'Success', message:'saved post', data:@post, likes:@likes}, status: :ok
 
     end
 
