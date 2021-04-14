@@ -10,7 +10,7 @@ class PostpController < ApplicationController
 
     def getallposts 
 
-        @post = Postp.joins('LEFT JOIN "users" ON "users"."id" = "postps"."user_id"').select('users.email','postps.*').order('postps.created_at')
+        @post = Postp.joins('LEFT JOIN "users" ON "users"."id" = "postps"."user_id"').select('users.email','postps.*').order('postps.created_at' :desc)
         @likes = Userlikepost.where(user_id: params[:id_user])
         render json: { status: 'Success', message:'saved post', data:@post, likes:@likes}, status: :ok
 
