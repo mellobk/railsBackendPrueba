@@ -38,6 +38,12 @@ class UserlikepostController < ApplicationController
             @userlikepost = Userlikepost.new(user_likes_post_param)
         
             if @userlikepost.save 
+            if params[:status]===1
+                @Post=Postp.where(id: params[:postp_id])
+                @Post.update(numero_likes: @Post[0].numero_likes+1 )
+            else
+                @Post.update(numero_dislikes: @Post[0].numero_dislikes+1 )
+            end
                 render json: { status: 'Success', message:'like created', data:@userlikepost}, status: :ok
             else
                 render json: { status: 'Error', message:'Error creating like', data:@userlikepost.errors}, status: :unprocessable_entity
