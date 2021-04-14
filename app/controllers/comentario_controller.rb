@@ -11,7 +11,7 @@ class ComentarioController < ApplicationController
     def create 
 
         @comentary = Comentario.new(user_param)
-        @postId = Postp.where(postp_id: params[:postp_id])
+        @postId = Postp.where(id: params[:postp_id])
         
         if @comentary.save 
             @postId.update(numero_comentarios: @postId[0].numero_comentarios+1 )
