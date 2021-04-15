@@ -27,7 +27,7 @@ class ComentarioController < ApplicationController
 
         @comentary = Comentario.new(user_param)
         @postId = Postp.where(id: params[:postp_id])
-        @comentarypost = Comentario.where(postp_id: params[:postp_id])
+        @comentarypost = Comentario.joins('LEFT JOIN "users" ON "users"."id" = "comentarios"."user_id"').select('users.email','comentarios.*').order('comentarios.created_at desc' ).where(postp_id: params[:postp_id])
 
         if @comentary.save 
             @postId.update(numero_comentarios: @postId[0].numero_comentarios+1 )
