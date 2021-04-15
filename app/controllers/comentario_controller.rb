@@ -27,11 +27,11 @@ class ComentarioController < ApplicationController
 
         @comentary = Comentario.new(user_param)
         @postId = Postp.where(id: params[:postp_id])
-        @comentarypost = Comentario..where(postp_id: params[:postp_id])
+        @comentarypost = Comentario.where(postp_id: params[:postp_id])
 
         if @comentary.save 
             @postId.update(numero_comentarios: @postId[0].numero_comentarios+1 )
-            render json: { status: 'Success', message:'Comentary created', data:@comentarypost}, status: :ok
+            render json: { status: 'Success', message:'Comentary created', data:@comentarypost, comentarios:@comentarypost}, status: :ok
         else
             render json: { status: 'Error', message:'Error create Comentary', data:@comentary.errors}, status: :unprocessable_entity
         end
