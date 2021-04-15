@@ -31,7 +31,7 @@ class ComentarioController < ApplicationController
 
         if @comentary.save 
             @postId.update(numero_comentarios: @postId[0].numero_comentarios+1 )
-            render json: { status: 'Success', message:'Comentary created', data:@comentarypost, comentarios:@comentarypost}, status: :ok
+            render json: { status: 'Success', message:'Comentary created', data:@postId, comentarios:@comentarypost}, status: :ok
         else
             render json: { status: 'Error', message:'Error create Comentary', data:@comentary.errors}, status: :unprocessable_entity
         end
