@@ -12,7 +12,7 @@ class ComentarioController < ApplicationController
     def postComentarys
 
         @postId = Postp.joins('LEFT JOIN "users" ON "users"."id" = "postps"."user_id"').select('users.email','postps.*').order('postps.created_at desc' ).where(id: params[:postp_id])
-        @comentary = Comentario.joins('LEFT JOIN "users" ON "users"."id" = "comentarios"."user_id"').select('users.email','comentarios.*').order('comentarios.created_at asc' ).where(postp_id: params[:postp_id])
+        @comentary = Comentario.joins('LEFT JOIN "users" ON "users"."id" = "comentarios"."user_id"').select('users.email','comentarios.*').order('comentarios.created_at desc' ).where(postp_id: params[:postp_id])
 
         if @postId
             render json: { status: 'Success', message:'Comentary created', data:@postId, comentarios:@comentary}, status: :ok
