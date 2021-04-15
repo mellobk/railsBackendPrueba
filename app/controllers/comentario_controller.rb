@@ -11,7 +11,7 @@ class ComentarioController < ApplicationController
 
     def postComentarys
 
-        @postId = Postp.where(id: params[:postp_id])
+        @postId = Postp.joins('LEFT JOIN "users" ON "users"."id" = "postps"."user_id"').select('users.email','postps.*').order('postps.created_at desc' ).where(id: params[:postp_id])
         @comentary = Comentario.where(postp_id: params[:postp_id])
 
         if @postId
