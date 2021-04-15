@@ -14,8 +14,8 @@ class ComentarioController < ApplicationController
         @postId = Postp.where(id: params[:postp_id])
         @comentary = Comentario.where(postp_id: params[:postp_id])
 
-        if @comentary
-            render json: { status: 'Success', message:'Comentary created', data:@comentarypost, comentarios:@comentary}, status: :ok
+        if @postId
+            render json: { status: 'Success', message:'Comentary created', data:@postId, comentarios:@comentary}, status: :ok
         else
             render json: { status: 'Error', message:'Error create Comentary', data:@comentary.errors}, status: :unprocessable_entity
         end
