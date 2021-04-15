@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :userlikepost
 
   get '/getallposts/:id_user', to: 'postp#getallposts'
+  get '/postComentarys/:postp_id', to: 'comentario#postComentarys'
 end
